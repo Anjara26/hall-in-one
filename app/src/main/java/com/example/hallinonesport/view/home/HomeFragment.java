@@ -3,16 +3,14 @@ package com.example.hallinonesport.view.home;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hallinonesport.R;
-import com.example.hallinonesport.model.Equipment;
-
-import java.util.ArrayList;
+import com.example.hallinonesport.view.home.equipment.EquipmentFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,7 +62,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        loadFragement(new EquipmentFragment());
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    private void loadFragement(Fragment fragment) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_home_layout,fragment);
+        transaction.commit();
     }
 }

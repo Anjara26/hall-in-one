@@ -2,17 +2,38 @@ package com.example.hallinonesport.model;
 
 public class Equipment {
 
-    private String equipment_name;
+    private String image;
+    private String name;
 
-    public Equipment(String equipment_name) {
-        this.equipment_name = equipment_name;
+    private boolean isSelected = false;
+
+    public Equipment(String image, String name) {
+        this.image = image;
+        this.name = name;
     }
 
-    public String getEquipment_name() {
-        return equipment_name;
+    public String getImage() {
+        return image;
     }
 
-    public void setEquipment_name(String equipment_name) {
-        this.equipment_name = equipment_name;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+    public String getname() {
+        return name;
+    }
+
+    public void setname(String name) {
+        this.name = name;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
 }
