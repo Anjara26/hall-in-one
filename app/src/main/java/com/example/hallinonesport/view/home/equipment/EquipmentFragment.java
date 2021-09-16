@@ -1,17 +1,25 @@
 package com.example.hallinonesport.view.home.equipment;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Equipment;
+import com.example.hallinonesport.view.home.training.TrainingFragment;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -38,7 +46,9 @@ public class EquipmentFragment extends Fragment {
 
     private List<Equipment> equipments;
     private RecyclerView recyclerView;
+    private SearchView searchView;
     private RecyclerView.Adapter adapter;
+    private ImageView imageView;
 
     public EquipmentFragment() {
         // Required empty public constructor
@@ -85,12 +95,25 @@ public class EquipmentFragment extends Fragment {
         this.recyclerView.setLayoutManager(manager);
         this.recyclerView.setAdapter(this.adapter);
 
+        this.imageView = view.findViewById(R.id.imageView3);
+        this.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                TrainingFragment trainingFragment = (TrainingFragment) fragmentManager.findFragmentByTag("training");
+                if(trainingFragment==null){
+                    trainingFragment = new TrainingFragment();
+                    fragmentManager.beginTransaction().replace(R.id.equipment, trainingFragment, "training").commit();
+                }
+            }
+        });
+
         return view;
     }
 
     private List<Equipment> getListEquipment() {
         equipments = new ArrayList<>();
-        for (int i = 1; i <= 25; i++) {
+        for (int i = 1; i <= 11; i++) {
             equipments.add(new Equipment("@drawable/skipping_rope_", "Corde à sauter"));
         }
         return equipments;

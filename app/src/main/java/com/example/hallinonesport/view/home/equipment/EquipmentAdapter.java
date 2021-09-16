@@ -3,10 +3,12 @@ package com.example.hallinonesport.view.home.equipment;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.MyVi
         private CardView cardView;
         private TextView textView;
         private ImageView imageView;
+        private ImageView check;
 
         private MyViewHolder(View itemView) {
             super(itemView);
@@ -42,6 +45,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.MyVi
             cardView = (CardView) itemView.findViewById(R.id.card);
             textView = (TextView) itemView.findViewById(R.id.textView);
             imageView = (ImageView) itemView.findViewById(R.id.imageView8);
+            check = (ImageView) itemView.findViewById(R.id.imageView2);
         }
     }
 
@@ -61,7 +65,8 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.MyVi
             @Override
             public void onClick(View view) {
                 equipment.setSelected(!equipment.isSelected());
-                holder.view.setBackgroundColor(equipment.isSelected() ? Color.CYAN : Color.WHITE);
+                holder.cardView.setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
+                holder.check.setVisibility(equipment.isSelected() ? View.VISIBLE : View.INVISIBLE);
             }
         });
     }
