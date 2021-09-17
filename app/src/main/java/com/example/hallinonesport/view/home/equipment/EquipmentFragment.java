@@ -90,19 +90,6 @@ public class EquipmentFragment extends Fragment {
         this.recyclerView.setLayoutManager(manager);
         this.recyclerView.setAdapter(this.adapter);
 
-        this.imageView = view.findViewById(R.id.imageView3);
-        this.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                TrainingFragment trainingFragment = (TrainingFragment) fragmentManager.findFragmentByTag("training");
-                if(trainingFragment==null){
-                    trainingFragment = new TrainingFragment();
-                    fragmentManager.beginTransaction().replace(R.id.equipment, trainingFragment, "training").commit();
-                }
-            }
-        });
-
         return view;
     }
 
