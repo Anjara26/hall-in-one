@@ -17,24 +17,22 @@
         android:layout_weight="1"
         app:cardElevation="5dp">
 
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/equipment_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imageView8"
+                android:layout_below="@id/equipment_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif-smallcaps"
                 android:text="Corde à sauter" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/equipment_image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_centerHorizontal="true"
@@ -42,7 +40,7 @@
                 android:src="@drawable/skipping_rope_" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/chek_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
