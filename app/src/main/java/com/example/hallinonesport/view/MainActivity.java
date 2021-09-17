@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.hallinonesport.R;
+import com.example.hallinonesport.tools.Useful;
 import com.example.hallinonesport.view.account.AccountFragment;
 import com.example.hallinonesport.view.home.HomeFragment;
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragement(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout,fragment);
         transaction.commit();
     }
