@@ -14,14 +14,14 @@ public class CardEquipmentHolder extends RecyclerView.ViewHolder {
     private CardView cardView;
     private TextView name;
     private ImageView image;
-    private ImageView check;
+    private ImageView checkImage;
 
     public CardEquipmentHolder(View itemView) {
         super(itemView);
         cardView = (CardView) itemView.findViewById(R.id.card);
         name = (TextView) itemView.findViewById(R.id.equipment_name);
         image = (ImageView) itemView.findViewById(R.id.equipment_image);
-        check = (ImageView) itemView.findViewById(R.id.chek_image);
+        checkImage = (ImageView) itemView.findViewById(R.id.chek_image);
     }
 
     public CardView getCardView() {
@@ -36,7 +36,7 @@ public class CardEquipmentHolder extends RecyclerView.ViewHolder {
         return image;
     }
 
-    public ImageView getCheck() {
-        return check;
+    public ImageView getCheckImage() {
+        return checkImage;
     }
 }

@@ -38,7 +38,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> 
             public void onClick(View view) {
                 equipment.setSelected(!equipment.isSelected());
                 holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
-                holder.getImage().setVisibility(equipment.isSelected() ? View.VISIBLE : View.INVISIBLE);
+                holder.getCheckImage().setVisibility(equipment.isSelected() ? View.VISIBLE : View.INVISIBLE);
             }
         });
     }
