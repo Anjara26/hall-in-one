@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.SearchView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Equipment;
@@ -41,9 +40,7 @@ public class EquipmentFragment extends Fragment {
 
     private List<Equipment> equipments;
     private RecyclerView recyclerView;
-    private SearchView searchView;
     private RecyclerView.Adapter adapter;
-    private ImageView imageView;
 
     public EquipmentFragment() {
         // Required empty public constructor
@@ -100,4 +97,5 @@ public class EquipmentFragment extends Fragment {
         }
         return equipments;
     }
+
 }
