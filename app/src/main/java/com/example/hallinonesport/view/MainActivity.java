@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.SearchView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.hallinonesport.R;
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //remove default toolbar
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
@@ -42,10 +45,13 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getId()) {
                     case 1 :
                         fragment = new HomeFragment();
+                        getSupportActionBar().show();
+                        getSupportActionBar().setTitle("Choisissez vos équipements");
                         break;
 
                     case 2 :
                         fragment = new AccountFragment();
+                        getSupportActionBar().hide();
                         break;
                 }
 
