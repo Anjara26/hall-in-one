@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Useful.loadFragment(new EquipmentFragment(), getActivity(), R.id.frame_home_layout);
+        Useful.loadFragment(new TrainingFragment(), getActivity(), R.id.frame_home_layout);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }

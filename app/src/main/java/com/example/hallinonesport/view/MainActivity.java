@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //remove default toolbar
-        //getSupportActionBar().hide();
-
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
@@ -45,13 +42,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getId()) {
                     case 1 :
                         fragment = new HomeFragment();
-                        getSupportActionBar().show();
                         getSupportActionBar().setTitle("Choisissez vos équipements");
                         break;
 
                     case 2 :
                         fragment = new AccountFragment();
-                        getSupportActionBar().hide();
+                        getSupportActionBar().setTitle("Mon profil");
                         break;
                 }
 
