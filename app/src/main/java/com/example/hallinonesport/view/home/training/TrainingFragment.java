@@ -2,6 +2,7 @@ package com.example.hallinonesport.view.home.training;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,6 +69,7 @@ public class TrainingFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Vos entraînements");
     }
 
     @Override
@@ -87,7 +89,8 @@ public class TrainingFragment extends Fragment {
     private List<Training> getListTraining() {
         trainings = new ArrayList<>();
         for (int i = 1; i <= 11; i++) {
-            trainings.add(new Training("@drawable/fitness", "Kickback", "Pour muscler les triceps", 3.4f));
+            trainings.add(new Training(null,"@drawable/fitness", "Kickback",
+                    "Pour muscler les triceps", 3.4f, null, null));
         }
         return trainings;
     }
