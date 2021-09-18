@@ -32,11 +32,11 @@ public class LocaleDbAccess {
 
         if(cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Equipment equipment = new Equipment(cursor.getString(2),
-                        cursor.getString(1));
-                int selected = cursor.getInt(3);
-                if(selected == 1)
-                    equipment.setSelected(true);
+                Equipment equipment = new Equipment()
+                        .setId(cursor.getInt(0))
+                        .setname(cursor.getString(1))
+                        .setImage(cursor.getString(2))
+                        .setSelected(cursor.getInt(3));
                 equipments.add(equipment);
                 cursor.moveToNext();
             }

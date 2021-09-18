@@ -2,6 +2,7 @@ package com.example.hallinonesport.model;
 
 public class Training {
 
+    private  int id;
     private String type;
     private String imageIcon;
     private String name;
@@ -10,70 +11,76 @@ public class Training {
     private String image;
     private String video;
 
-    public Training(String type, String imageIcon, String name, String description, float duration, String image, String video) {
-        this.type = type;
-        this.imageIcon = imageIcon;
-        this.name = name;
-        this.description = description;
-        this.duration = duration;
-        this.image = image;
-        this.video = video;
+    public int getId() {
+        return id;
+    }
+
+    public Training setId(int id) {
+        this.id = id;
+        return this;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public Training setType(String type) {
         this.type = type;
+        return this;
     }
 
     public String getImageIcon() {
         return imageIcon;
     }
 
-    public void setImageIcon(String imageIcon) {
+    public Training setImageIcon(String imageIcon) {
         this.imageIcon = imageIcon;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Training setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Training setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public float getDuration() {
         return duration;
     }
 
-    public void setDuration(float duration) {
+    public Training setDuration(float duration) {
         this.duration = duration;
+        return this;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public Training setImage(String image) {
         this.image = image;
+        return this;
     }
 
     public String getVideo() {
         return video;
     }
 
-    public void setVideo(String video) {
+    public Training setVideo(String video) {
         this.video = video;
+        return this;
     }
 
 }

@@ -89,8 +89,12 @@ public class TrainingFragment extends Fragment {
     private List<Training> getListTraining() {
         trainings = new ArrayList<>();
         for (int i = 1; i <= 11; i++) {
-            trainings.add(new Training(null,"@drawable/fitness", "Kickback",
-                    "Pour muscler les triceps", 3.4f, null, null));
+            Training training = new Training()
+                    .setId(i)
+                    .setName("Kickback")
+                    .setDescription("Pour muscler les triceps")
+                    .setDuration(3.4f);
+            trainings.add(training);
         }
         return trainings;
     }

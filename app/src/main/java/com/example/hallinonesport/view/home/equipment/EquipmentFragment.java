@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -13,11 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Equipment;
-import com.example.hallinonesport.view.home.training.TrainingFragment;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -108,7 +105,11 @@ public class EquipmentFragment extends Fragment {
     private List<Equipment> getListEquipment() {
         equipments = new ArrayList<>();
         for (int i = 1; i <= 11; i++) {
-            equipments.add(new Equipment("@drawable/skipping_rope_", "Corde à sauter"));
+            Equipment equipment = new Equipment()
+                    .setId(i)
+                    .setname("Corde à sauter")
+                    .setImage("@drawable/skipping_rope_");
+            equipments.add(equipment);
         }
         return equipments;
     }
