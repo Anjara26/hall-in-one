@@ -82,7 +82,7 @@ public class EquipmentFragment extends Fragment {
         FlexboxLayoutManager manager = new FlexboxLayoutManager(view.getContext());
         manager.setFlexDirection(FlexDirection.ROW);
         manager.setFlexWrap(FlexWrap.WRAP);
-        manager.setJustifyContent(JustifyContent.SPACE_EVENLY);
+        manager.setJustifyContent(JustifyContent.SPACE_AROUND);
         this.recyclerView.setHasFixedSize(true);
         this.recyclerView.setLayoutManager(manager);
         this.recyclerView.setAdapter(this.adapter);
