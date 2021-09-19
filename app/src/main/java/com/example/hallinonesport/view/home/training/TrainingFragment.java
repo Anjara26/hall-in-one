@@ -78,7 +78,7 @@ public class TrainingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_training, container, false);
         this.recyclerView = view.findViewById(R.id.training_recyclerView);
-        this.adapter = new TrainingAdapter(getListTraining());
+        this.adapter = new TrainingAdapter(getListTraining(), getActivity());
         FlexboxLayoutManager manager = new FlexboxLayoutManager(view.getContext());
         manager.setFlexDirection(FlexDirection.ROW);
         this.recyclerView.setLayoutManager(manager);

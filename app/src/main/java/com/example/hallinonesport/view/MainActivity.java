@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                     case 2 :
                         fragment = new AccountFragment();
                         getSupportActionBar().setTitle("Mon profil");
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                        getSupportActionBar().setDisplayShowHomeEnabled(false);
                         break;
                 }
 
@@ -55,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }
         });
+    }
+
+    /**
+     * Run on navigation back called
+     * @return boolean
+     */
+    @Override
+    public boolean onSupportNavigateUp() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        onBackPressed();
+        return true;
     }
 
     private void loadFragement(Fragment fragment) {

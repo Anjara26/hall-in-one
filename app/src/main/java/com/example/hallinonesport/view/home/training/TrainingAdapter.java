@@ -5,6 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
@@ -16,9 +20,11 @@ import java.util.List;
 public class TrainingAdapter extends RecyclerView.Adapter<TrainingHolder> {
 
     private List<Training> trainings;
+    private FragmentActivity activity;
 
-    public TrainingAdapter(List<Training> trainings) {
+    public TrainingAdapter(List<Training> trainings, FragmentActivity activity) {
         this.trainings = trainings;
+        this.activity = activity;
     }
 
     @NonNull
@@ -32,7 +38,20 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingHolder> {
     public void onBindViewHolder(@NonNull TrainingHolder holder, int position) {
         final Training training = trainings.get(position);
         holder.getName().setText(training.getName());
-        holder.getDescription().setText(training.getDescription());
+        FragmentTransaction transaction = this.activity.getSupportFragmentManager().beginTransaction();
+        holder.getCardView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                transaction.replace(R.id.frame_home_layout, new TrainingDetailsFragment());
+                transaction.addToBackStack(null);
+
+                ActionBar actionBar =  ((AppCompatActivity)activity).getSupportActionBar();
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+
+                transaction.commit();
+            }
+        });
     }
 
     @Override
