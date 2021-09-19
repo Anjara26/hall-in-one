@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Training;
+import com.example.hallinonesport.view.home.training.details.TrainingDetailsFragment;
 
 import java.util.List;
 

@@ -20,14 +20,12 @@ import android.widget.Button;
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Equipment;
 import com.example.hallinonesport.model.LocaleDbAccess;
-import com.example.hallinonesport.view.home.training.TrainingDetailsFragment;
 import com.example.hallinonesport.view.home.training.TrainingFragment;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
