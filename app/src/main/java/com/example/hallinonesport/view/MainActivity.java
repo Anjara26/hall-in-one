@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account_circle));
+        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
         bottomNavigation.show(1, true);
         loadFragement(new HomeFragment());
 
