@@ -1,16 +1,27 @@
 package com.example.hallinonesport.view.home.training.details;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.asura.library.posters.DrawableImage;
+import com.asura.library.posters.Poster;
+import com.asura.library.posters.RemoteVideo;
+import com.asura.library.views.PosterSlider;
 import com.example.hallinonesport.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TrainingDetailsFragment extends Fragment {
+
+    private PosterSlider posterSlider;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +31,14 @@ public class TrainingDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_training_details, container, false);
+        posterSlider = (PosterSlider) view.findViewById(R.id.poster_slider);
+        List<Poster> posters=new ArrayList<>();
+        posters.add(new DrawableImage(R.drawable.fitness));
+        posters.add(new RemoteVideo(Uri.parse("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")));
+        Log.d("poster", String.valueOf(posters.size()));
+        posterSlider.setPosters(posters);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_training_details, container, false);
+        return view;
     }
 }
