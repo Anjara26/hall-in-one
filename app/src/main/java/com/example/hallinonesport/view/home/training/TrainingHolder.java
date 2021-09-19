@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
 
-import org.w3c.dom.Text;
 
 public class TrainingHolder extends RecyclerView.ViewHolder {
 

@@ -80,7 +80,7 @@ public class EquipmentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_equipment, container, false);
         setHasOptionsMenu(true);
         this.recyclerView = view.findViewById(R.id.recycler_view);
-        this.adapter = new EquipmentAdapter(getListEquipment());
+        this.adapter = new EquipmentAdapter(getListEquipment(), getActivity());
         FlexboxLayoutManager manager = new FlexboxLayoutManager(view.getContext());
         manager.setFlexDirection(FlexDirection.ROW);
         manager.setFlexWrap(FlexWrap.WRAP);
@@ -104,11 +104,11 @@ public class EquipmentFragment extends Fragment {
 
     private List<Equipment> getListEquipment() {
         equipments = new ArrayList<>();
-        for (int i = 1; i <= 11; i++) {
+        for (int i = 1; i < 19; i++) {
             Equipment equipment = new Equipment()
                     .setId(i)
                     .setname("Corde à sauter")
-                    .setImage("@drawable/skipping_rope_");
+                    .setImage("@drawable/image" + i);
             equipments.add(equipment);
         }
         return equipments;

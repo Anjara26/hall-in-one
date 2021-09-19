@@ -1,12 +1,9 @@
 package com.example.hallinonesport.tools;
 
-import android.widget.FrameLayout;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.hallinonesport.R;
 
 public class Useful {
 

@@ -5,13 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.SearchView;
-
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.hallinonesport.R;
-import com.example.hallinonesport.tools.Useful;
 import com.example.hallinonesport.view.account.AccountFragment;
 import com.example.hallinonesport.view.home.HomeFragment;
 

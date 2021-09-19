@@ -1,11 +1,14 @@
 package com.example.hallinonesport.view.home.equipment;
 
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
@@ -16,9 +19,11 @@ import java.util.List;
 public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> {
 
     private List<Equipment> equipments;
+    private FragmentActivity activity;
 
-    public EquipmentAdapter(List<Equipment> equipments) {
+    public EquipmentAdapter(List<Equipment> equipments, FragmentActivity activity) {
         this.equipments = equipments;
+        this.activity = activity;
     }
 
     @NonNull
@@ -32,6 +37,10 @@ public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> 
     public void onBindViewHolder(CardEquipmentHolder holder, int position) {
         final Equipment equipment = equipments.get(position);
         holder.getName().setText(equipment.getname());
+        Resources resources = holder.itemView.getResources();
+        int imageResource = resources.getIdentifier(equipment.getImage(), null, activity.getPackageName());
+        Drawable res = resources.getDrawable(imageResource, activity.getTheme());
+        holder.getImage().setImageDrawable(res);
         holder.getCardView().setOnClickListener(new View.OnClickListener(){
 
             @Override
