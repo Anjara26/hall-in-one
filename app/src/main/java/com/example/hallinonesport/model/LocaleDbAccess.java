@@ -27,7 +27,7 @@ public class LocaleDbAccess {
         this.database = this.dbAccess.getWritableDatabase();
         List<Equipment> equipments = new ArrayList<>();
 
-        String sql = "select * from equipment;";
+        String sql = "SELECT * FROM equipment ORDER BY name;";
         Cursor cursor = database.rawQuery(sql, null);
 
         if(cursor.moveToFirst()) {

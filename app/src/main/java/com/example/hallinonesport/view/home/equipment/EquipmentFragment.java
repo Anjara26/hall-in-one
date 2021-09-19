@@ -19,6 +19,7 @@ import android.widget.Button;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Equipment;
+import com.example.hallinonesport.model.LocaleDbAccess;
 import com.example.hallinonesport.view.home.training.TrainingDetailsFragment;
 import com.example.hallinonesport.view.home.training.TrainingFragment;
 import com.google.android.flexbox.FlexDirection;
@@ -49,6 +50,7 @@ public class EquipmentFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private Button button;
+    private LocaleDbAccess db;
 
     public EquipmentFragment() {
         // Required empty public constructor
@@ -75,6 +77,7 @@ public class EquipmentFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.db = new LocaleDbAccess(getContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -127,15 +130,7 @@ public class EquipmentFragment extends Fragment {
     }
 
     private List<Equipment> getListEquipment() {
-        equipments = new ArrayList<>();
-        for (int i = 1; i < 19; i++) {
-            Equipment equipment = new Equipment()
-                    .setId(i)
-                    .setname("Corde à sauter")
-                    .setImage("@drawable/image" + i);
-            equipments.add(equipment);
-        }
-        return equipments;
+        return db.getEquipments();
     }
 
 }

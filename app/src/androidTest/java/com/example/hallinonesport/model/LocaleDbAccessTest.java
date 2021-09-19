@@ -16,7 +16,7 @@ public class LocaleDbAccessTest {
 
     @Test
     public void getEquipments() throws Exception {
-        assertThat(db.getEquipments().size(), equalTo(1));
+        assertThat(db.getEquipments().size(), equalTo(18));
     }
 
 

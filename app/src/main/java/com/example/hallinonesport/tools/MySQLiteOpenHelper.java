@@ -28,9 +28,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(QueryStr.CREATETABLEEQUIPEMENT + QueryStr.CREATETABLETRAIN + QueryStr.CREATETABLEACCOMPLISHMENT);
-        String sql = "insert into equipment (equipment_id, name, image, is_selected) values " +
-                "(1, 'equipement1', 1, 0)";
-        sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.execSQL(QueryStr.INSERTEQUIPMENTS);
     }
 
     /**
@@ -41,6 +39,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int lastVersion, int newVersion) {
-
+        sqLiteDatabase.execSQL(QueryStr.DELETEALLTABLES);
+        this.onCreate(sqLiteDatabase);
     }
 }
