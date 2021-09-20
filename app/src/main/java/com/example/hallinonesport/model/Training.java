@@ -7,7 +7,7 @@ public class Training {
     private String imageIcon;
     private String name;
     private String description;
-    private float duration;
+    private double duration;
     private String image;
     private String video;
 
@@ -56,11 +56,11 @@ public class Training {
         return this;
     }
 
-    public float getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public Training setDuration(float duration) {
+    public Training setDuration(double duration) {
         this.duration = duration;
         return this;
     }

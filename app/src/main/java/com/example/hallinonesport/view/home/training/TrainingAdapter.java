@@ -1,11 +1,13 @@
 package com.example.hallinonesport.view.home.training;
 
 import android.content.res.Resources;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
@@ -37,6 +39,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingHolder> {
         return new TrainingHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull TrainingHolder holder, int position) {
         final Training training = trainings.get(position);
@@ -48,6 +51,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingHolder> {
                 activity.getPackageName(),
                 activity.getTheme()
         ));
+        holder.getTimer().setText(Useful.doubleToMinuteSecondString(training.getDuration()));
         FragmentTransaction transaction = this.activity.getSupportFragmentManager().beginTransaction();
         ActionBar actionBar =  ((AppCompatActivity)activity).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

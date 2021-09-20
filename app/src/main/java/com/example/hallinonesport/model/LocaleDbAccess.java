@@ -78,7 +78,7 @@ public class LocaleDbAccess {
                         .setId(cursor.getInt(0))
                         .setName(cursor.getString(4))
                         .setDescription(cursor.getString(5))
-                        .setDuration(cursor.getFloat(6))
+                        .setDuration(cursor.getDouble(6))
                         .setImageIcon(cursor.getString(7))
                         .setImage(cursor.getString(8))
                         .setVideo(cursor.getString(9));
