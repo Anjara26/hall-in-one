@@ -28,7 +28,7 @@ public class TrainingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Vos entraînements");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.training_title);
     }
 
     @Override

@@ -40,15 +40,13 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingHolder> {
         final Training training = trainings.get(position);
         holder.getName().setText(training.getName());
         FragmentTransaction transaction = this.activity.getSupportFragmentManager().beginTransaction();
+        ActionBar actionBar =  ((AppCompatActivity)activity).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         holder.getCardView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 transaction.replace(R.id.frame_home_layout, new TrainingDetailsFragment());
                 transaction.addToBackStack(null);
-
-                ActionBar actionBar =  ((AppCompatActivity)activity).getSupportActionBar();
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setDisplayShowHomeEnabled(true);
 
                 transaction.commit();
             }

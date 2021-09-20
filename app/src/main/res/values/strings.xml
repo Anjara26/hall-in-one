@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Hall In One Sport</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_title">Choisissez vos équipement</string>
+    <string name="training_title">Vos entraînements</string>
+    <string name="profil_title">Mon profil</string>
 </resources>

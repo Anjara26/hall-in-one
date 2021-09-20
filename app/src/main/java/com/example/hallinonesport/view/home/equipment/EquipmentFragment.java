@@ -99,16 +99,17 @@ public class EquipmentFragment extends Fragment {
         this.recyclerView.setAdapter(this.adapter);
 
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        ActionBar actionBar =  ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setTitle(R.string.home_title);
         this.button = view.findViewById(R.id.button_equipment);
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 transaction.replace(R.id.frame_home_layout, new TrainingFragment());
                 transaction.addToBackStack(null);
-
                 ActionBar actionBar =  ((AppCompatActivity)getActivity()).getSupportActionBar();
                 actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setDisplayShowHomeEnabled(true);
 
                 transaction.commit();
             }

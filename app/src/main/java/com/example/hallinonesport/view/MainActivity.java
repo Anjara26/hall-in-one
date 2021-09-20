@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.hallinonesport.R;
@@ -38,14 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getId()) {
                     case 1 :
                         fragment = new HomeFragment();
-                        getSupportActionBar().setTitle("Choisissez vos équipements");
+                        getSupportActionBar().setTitle(R.string.home_title);
                         break;
 
                     case 2 :
                         fragment = new AccountFragment();
-                        getSupportActionBar().setTitle("Mon profil");
+                        getSupportActionBar().setTitle(R.string.profil_title);
                         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                        getSupportActionBar().setDisplayShowHomeEnabled(false);
                         break;
                 }
 
@@ -61,10 +61,20 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onSupportNavigateUp() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        // note: you can also use 'getSupportFragmentManager()'
+        FragmentManager mgr = getFragmentManager();
+        if (mgr.getBackStackEntryCount() == 0) {
+            // No backstack to pop, so calling super
+            super.onBackPressed();
+        } else {
+            mgr.popBackStack();
+        }
     }
 
     private void loadFragement(Fragment fragment) {
