@@ -24,7 +24,7 @@ public class LocaleDbAccess {
      * @return equipments
      */
     public List<Equipment> getEquipments() {
-        this.database = this.dbAccess.getWritableDatabase();
+        this.database = this.dbAccess.getReadableDatabase();
         List<Equipment> equipments = new ArrayList<>();
 
         String sql = "SELECT * FROM equipment ORDER BY name;";
@@ -46,5 +46,50 @@ public class LocaleDbAccess {
         this.database.close();
 
         return  equipments;
+    }
+
+    public List<Training> getTrainings () {
+        this.database = this.dbAccess.getReadableDatabase();
+        List<Training> trainings = new ArrayList<>();
+        String sql = "SELECT * FROM train;";
+        Cursor cursor = database.rawQuery(sql, null);
+        
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Training training = new Training()
+                        .setId(cursor.getInt(0))
+                        .setName(cursor.getString(4))
+                        .setDescription(cursor.getString(5))
+                        .setDuration(cursor.getFloat(6))
+                        .setImageIcon(cursor.getString(7))
+                        .setImage(cursor.getString(8))
+                        .setVideo(cursor.getString(9));
+                cursor.moveToNext();
+                trainings.add(training);
+            }
+        }
+
+        this.dbAccess.close();
+        cursor.close();
+        return trainings;
+    }
+
+    public Training getTrainingById (int id) {
+        this.database = this.dbAccess.getReadableDatabase();
+        Training training = new Training();
+        String sql = "SELECT * FROM train WHERE train_id = " +id;
+        Cursor cursor = this.database.rawQuery(sql, null);
+
+        if(cursor.moveToFirst()) {
+            training = training.setId(cursor.getInt(0))
+                    .setName(cursor.getString(4))
+                    .setDescription(cursor.getString(5))
+                    .setDuration(cursor.getFloat(6))
+                    .setImageIcon(cursor.getString(7))
+                    .setImage(cursor.getString(8))
+                    .setVideo(cursor.getString(9));
+        }
+
+        return training;
     }
 }

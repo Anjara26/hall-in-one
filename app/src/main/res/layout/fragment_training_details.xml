@@ -30,7 +30,7 @@
             </com.asura.library.views.PosterSlider>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/training_details_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -39,7 +39,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/training_details_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -52,7 +52,7 @@ consequat in, pretium a, enim."
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/training_details_timer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"

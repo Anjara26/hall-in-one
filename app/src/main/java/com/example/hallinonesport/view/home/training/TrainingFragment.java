@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hallinonesport.R;
+import com.example.hallinonesport.controller.TrainingController;
 import com.example.hallinonesport.model.Training;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -23,18 +24,19 @@ public class TrainingFragment extends Fragment {
     private List<Training> trainings;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
+    private TrainingController controller;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.training_title);
+        this.controller = TrainingController.getInstance(getContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_training, container, false);
         this.recyclerView = view.findViewById(R.id.training_recyclerView);
         this.adapter = new TrainingAdapter(getListTraining(), getActivity());
@@ -46,15 +48,7 @@ public class TrainingFragment extends Fragment {
     }
 
     private List<Training> getListTraining() {
-        trainings = new ArrayList<>();
-        for (int i = 1; i <= 11; i++) {
-            Training training = new Training()
-                    .setId(i)
-                    .setName("Kickback")
-                    .setDescription("Pour muscler les triceps")
-                    .setDuration(3.4f);
-            trainings.add(training);
-        }
+        trainings = controller.getListTrain();
         return trainings;
     }
 }

@@ -11,8 +11,8 @@ public class QueryStr {
     public static  final String CREATETABLETRAIN = "CREATE TABLE train (" +
             "    train_id INTEGER PRIMARY KEY," +
             "    equipment_id INTEGER," +
-            "    gender NUMERIC"+
-            "    type TEXT," +
+            "    gender NUMERIC,"+
+            "    goal TEXT," +
             "    title TEXT," +
             "    description TEXT," +
             "    duration INTEGER," +
@@ -53,4 +53,10 @@ public class QueryStr {
             " (16, \"Tapis de marche\", \"@drawable/image16\", 0)," +
             " (17, \"Corde à sauter\", \"@drawable/image17\", 0)," +
             " (18, \"Appareil d'abdominaux\", \"@drawable/image18\", 0);";
+
+    public static final String INSERTTRAINING = "INSERT INTO train (train_id, equipment_id, gender, goal, title, description, duration, image_icon, image, video) VALUES " +
+            "(1, 1, 0, \"perte\", \"La résistance progressive des élastiques 1\", \"Plus la tension augmente, plus vos muscles doivent forcer. Or, c’est parfait, puisque vos muscles sont justement en phase de contraction au moment où l’effort demandé est maximal. Comme la bande en latex tire pour revenir en position de départ, vous retenez la résistance pendant la phase descendante.\", 1.10, \"@drawable/image1\", \"@drawable/image1\", \"https://firebasestorage.googleapis.com/v0/b/hall-in-one.appspot.com/o/Bicycle%20crunch.mp4?alt=media\")," +
+            "(2, 1, 0, \"masse\", \"La résistance progressive des élastiques 2\", \"Plus la tension augmente, plus vos muscles doivent forcer. Or, c’est parfait, puisque vos muscles sont justement en phase de contraction au moment où l’effort demandé est maximal. Comme la bande en latex tire pour revenir en position de départ, vous retenez la résistance pendant la phase descendante.\", 1.10, \"@drawable/image2\", \"@drawable/image2\", \"https://firebasestorage.googleapis.com/v0/b/hall-in-one.appspot.com/o/Bicycle%20crunch.mp4?alt=media\")," +
+            "(3, 1, 1, \"perte\", \"La résistance progressive des élastiques 3\", \"Plus la tension augmente, plus vos muscles doivent forcer. Or, c’est parfait, puisque vos muscles sont justement en phase de contraction au moment où l’effort demandé est maximal. Comme la bande en latex tire pour revenir en position de départ, vous retenez la résistance pendant la phase descendante.\", 1.10, \"@drawable/image3\", \"@drawable/image1\", \"https://firebasestorage.googleapis.com/v0/b/hall-in-one.appspot.com/o/Bicycle%20crunch.mp4?alt=media\")," +
+            "(4, 1, 1, \"masse\", \"La résistance progressive des élastiques 4\", \"Plus la tension augmente, plus vos muscles doivent forcer. Or, c’est parfait, puisque vos muscles sont justement en phase de contraction au moment où l’effort demandé est maximal. Comme la bande en latex tire pour revenir en position de départ, vous retenez la résistance pendant la phase descendante.\", 1.10, \"@drawable/image4\", \"@drawable/image2\", \"https://firebasestorage.googleapis.com/v0/b/hall-in-one.appspot.com/o/Bicycle%20crunch.mp4?alt=media\");";
 }

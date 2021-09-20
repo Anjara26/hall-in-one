@@ -1,6 +1,7 @@
 package com.example.hallinonesport.view.home.training;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,13 +15,13 @@ public class TrainingHolder extends RecyclerView.ViewHolder {
 
     private CardView cardView;
     private TextView name;
-    private TextView description;
+    private ImageView imageView;
 
     public TrainingHolder(@NonNull View itemView) {
         super(itemView);
         cardView = (CardView) itemView.findViewById(R.id.training_card);
         name = (TextView)itemView.findViewById(R.id.name_training);
-        description = (TextView)itemView.findViewById(R.id.description);
+        imageView = (ImageView)itemView.findViewById(R.id.image_training_card);
     }
 
     public TextView getName() {
@@ -31,7 +32,7 @@ public class TrainingHolder extends RecyclerView.ViewHolder {
         return this.cardView;
     }
 
-    public TextView getDescription() {
-        return description;
+    public ImageView getImageView() {
+        return imageView;
     }
 }

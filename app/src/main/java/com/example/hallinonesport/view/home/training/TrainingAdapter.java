@@ -1,5 +1,6 @@
 package com.example.hallinonesport.view.home.training;
 
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Training;
+import com.example.hallinonesport.tools.Useful;
 import com.example.hallinonesport.view.home.training.details.TrainingDetailsFragment;
 
 import java.util.List;
@@ -39,15 +41,21 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingHolder> {
     public void onBindViewHolder(@NonNull TrainingHolder holder, int position) {
         final Training training = trainings.get(position);
         holder.getName().setText(training.getName());
+        Resources resources = holder.itemView.getResources();
+        holder.getImageView().setImageDrawable(Useful.getDrawable(
+                resources,
+                training.getImage(),
+                activity.getPackageName(),
+                activity.getTheme()
+        ));
         FragmentTransaction transaction = this.activity.getSupportFragmentManager().beginTransaction();
         ActionBar actionBar =  ((AppCompatActivity)activity).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         holder.getCardView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction.replace(R.id.frame_home_layout, new TrainingDetailsFragment());
+                transaction.replace(R.id.frame_home_layout, new TrainingDetailsFragment(training));
                 transaction.addToBackStack(null);
-
                 transaction.commit();
             }
         });
