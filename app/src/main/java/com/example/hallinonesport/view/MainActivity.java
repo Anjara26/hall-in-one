@@ -1,6 +1,7 @@
 package com.example.hallinonesport.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -8,6 +9,7 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.hallinonesport.R;
+import com.example.hallinonesport.controller.SettingController;
 import com.example.hallinonesport.view.account.AccountFragment;
 import com.example.hallinonesport.view.home.HomeFragment;
 
@@ -17,12 +19,17 @@ import kotlin.jvm.functions.Function1;
 public class MainActivity extends AppCompatActivity {
 
     MeowBottomNavigation bottomNavigation;
+    SettingController settingController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.settingController = SettingController.getInstance(this.getBaseContext());
 
+        if(this.settingController.isDarkmode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
 

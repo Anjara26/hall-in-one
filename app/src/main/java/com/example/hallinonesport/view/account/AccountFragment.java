@@ -1,18 +1,17 @@
 package com.example.hallinonesport.view.account;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -20,7 +19,6 @@ import android.widget.Switch;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.controller.SettingController;
-import com.example.hallinonesport.model.Setting;
 
 public class AccountFragment extends Fragment {
 
@@ -84,6 +82,11 @@ public class AccountFragment extends Fragment {
 
         this.getSetting(view);
 
+        if(this.settingController.isDarkmode()) {
+            this.preference.setBackgroundColor(Color.GRAY);
+            this.accountModal.setBackgroundColor(Color.GRAY);
+        }
+
         return view;
     }
 
@@ -126,6 +129,9 @@ public class AccountFragment extends Fragment {
 
                 if(darkmode.isChecked()){
                     darkmodeValue = true;
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
 
                 setSetting(gender, weightgain, weightloss, notificationValue, darkmodeValue);

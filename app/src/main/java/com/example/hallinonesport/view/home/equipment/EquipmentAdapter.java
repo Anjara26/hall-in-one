@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.controller.EquipmentController;
+import com.example.hallinonesport.controller.SettingController;
 import com.example.hallinonesport.model.Equipment;
 import com.example.hallinonesport.tools.Useful;
 
@@ -24,11 +25,13 @@ public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> 
     private List<Equipment> equipments;
     private FragmentActivity activity;
     private EquipmentController controller;
+    private SettingController  settingController;
 
     public EquipmentAdapter(List<Equipment> equipments, FragmentActivity activity, EquipmentController controller) {
         this.equipments = equipments;
         this.activity = activity;
         this.controller = controller;
+        this.settingController = SettingController.getInstance(activity.getBaseContext());
     }
 
     public void filterList(ArrayList<Equipment> filterllist) {
@@ -54,7 +57,11 @@ public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> 
                 activity.getPackageName(),
                 activity.getTheme()
         ));
-        holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
+        if(this.settingController.isDarkmode()) {
+            holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.GRAY);
+        } else {
+            holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
+        }
         holder.getCheckImage().setVisibility(equipment.isSelected() ? View.VISIBLE : View.INVISIBLE);
 
         holder.getCardView().setOnClickListener(new View.OnClickListener(){
@@ -62,7 +69,11 @@ public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> 
             public void onClick(View view) {
                 equipment.setSelected(!equipment.isSelected());
                 controller.setSelected(equipment.getId(), equipment.isSelected());
-                holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
+                if(settingController.isDarkmode()) {
+                    holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.GRAY);
+                } else {
+                    holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
+                }
                 holder.getCheckImage().setVisibility(equipment.isSelected() ? View.VISIBLE : View.INVISIBLE);
             }
         });
