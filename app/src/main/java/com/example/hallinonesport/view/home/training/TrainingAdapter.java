@@ -54,9 +54,8 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingHolder> {
         holder.getCardView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction.replace(R.id.frame_home_layout, new TrainingDetailsFragment());
+                transaction.replace(R.id.frame_home_layout, new TrainingDetailsFragment(training));
                 transaction.addToBackStack(null);
-
                 transaction.commit();
             }
         });

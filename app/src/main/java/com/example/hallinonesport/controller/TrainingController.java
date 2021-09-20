@@ -26,4 +26,8 @@ public final class TrainingController {
     public List<Training> getListTrain() {
         return db.getTrainings();
     }
+
+    public Training getTrainingById(int id) {
+        return db.getTrainingById(id);
+    }
 }
