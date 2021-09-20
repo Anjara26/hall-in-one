@@ -129,38 +129,20 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/man"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Homme" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/woman"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="Femme" />
             </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp">
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Age :" />
-
-            <SeekBar
-                android:id="@+id/seekBar3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -177,14 +159,14 @@
                 android:text="Objectif(s) : " />
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/weightGain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="Prise de masse" />
 
             <CheckBox
-                android:id="@+id/checkBox4"
+                android:id="@+id/weightLoss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Perte de poids" />
@@ -199,14 +181,14 @@
             android:textStyle="bold" />
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Activé les notifications" />
 
         <Switch
-            android:id="@+id/switch3"
+            android:id="@+id/darkmode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
