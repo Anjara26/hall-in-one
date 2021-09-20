@@ -19,8 +19,13 @@ public class LocaleDbAccessTest {
         assertThat(db.getEquipments().size(), equalTo(18));
     }
 
+//    @Test
+//    public void getTrainings() throws Exception {
+//        assertThat(db.getTrainings().size(), equalTo(4));
+//    }
+
     @Test
-    public void getTrainings() throws Exception {
-        assertThat(db.getTrainings().size(), equalTo(4));
+    public void getSelectedIds() throws  Exception {
+        assertThat(db.getSelectedIds().size(), equalTo(2));
     }
 }

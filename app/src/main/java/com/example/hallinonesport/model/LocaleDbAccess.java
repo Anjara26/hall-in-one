@@ -3,11 +3,17 @@ package com.example.hallinonesport.model;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.hallinonesport.tools.MySQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LocaleDbAccess {
     private String dbName = "hallInOne.sqlite";
@@ -48,10 +54,22 @@ public class LocaleDbAccess {
         return  equipments;
     }
 
-    public List<Training> getTrainings () {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<Training> getTrainings (List<Integer> idList, Setting setting) {
         this.database = this.dbAccess.getReadableDatabase();
         List<Training> trainings = new ArrayList<>();
-        String sql = "SELECT * FROM train;";
+        String idsStr = idList.stream().map(Object::toString).collect(Collectors.joining(","));
+
+        String typeCondition = "";
+
+        if(setting.isWeightloss() && !setting.isWeightgain()) {
+            typeCondition = "AND goal = 'perte'";
+        } else if(!setting.isWeightloss() && setting.isWeightgain()) {
+            typeCondition = "AND goal = 'masse'";
+        }
+
+        String sql = "SELECT * FROM train WHERE gender = " + setting.getGender() + " AND equipment_id IN (" + idsStr + ") " + typeCondition + ";";
+        Log.d("query", sql);
         Cursor cursor = database.rawQuery(sql, null);
         
         if (cursor.moveToFirst()) {
@@ -89,7 +107,8 @@ public class LocaleDbAccess {
                     .setImage(cursor.getString(8))
                     .setVideo(cursor.getString(9));
         }
-
+        this.dbAccess.close();
+        cursor.close();
         return training;
     }
 
@@ -98,5 +117,23 @@ public class LocaleDbAccess {
         int selected = isSelected ? 1 : 0;
         String sql = "UPDATE equipment SET is_selected = " + selected + " WHERE equipment_id = " + id;
         this.database.execSQL(sql);
+    }
+
+    public List<Integer> getSelectedIds () {
+        this.database = this.dbAccess.getReadableDatabase();
+        List<Integer> ids = new LinkedList<>();
+        String sql = "SELECT equipment_id FROM equipment WHERE is_selected = 1" ;
+        Cursor cursor = this.database.rawQuery(sql, null);
+
+        if(cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                ids.add(cursor.getInt(0));
+                cursor.moveToNext();
+            }
+        }
+
+        this.dbAccess.close();
+        cursor.close();
+        return ids;
     }
 }

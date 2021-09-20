@@ -73,12 +73,18 @@ public class EquipmentFragment extends Fragment {
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction.replace(R.id.frame_home_layout, new TrainingFragment());
-                transaction.addToBackStack(null);
-                ActionBar actionBar =  ((AppCompatActivity)getActivity()).getSupportActionBar();
-                actionBar.setDisplayHomeAsUpEnabled(true);
+                List<Integer> listIds = controller.getSelectedIds();
 
-                transaction.commit();
+                if(listIds.size() > 0) {
+                    transaction.replace(R.id.frame_home_layout, new TrainingFragment());
+                    transaction.addToBackStack(null);
+                    ActionBar actionBar =  ((AppCompatActivity)getActivity()).getSupportActionBar();
+                    actionBar.setDisplayHomeAsUpEnabled(true);
+
+                    transaction.commit();
+                } else {
+                    Toast.makeText(getActivity(), "Selectionez au moin un équipement", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -117,7 +123,7 @@ public class EquipmentFragment extends Fragment {
             }
         }
         if (filteredlist.isEmpty()) {
-            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Aucun élément trouvé", Toast.LENGTH_SHORT).show();
         } else {
             this.adapter.filterList(filteredlist);
         }

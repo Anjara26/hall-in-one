@@ -6,9 +6,9 @@ public class Setting implements Serializable {
 
     private static Setting instance = null;
 
-    private Integer gender;
-    private boolean weightgain;
-    private boolean weightloss;
+    private Integer gender = 1;
+    private boolean weightgain = false;
+    private boolean weightloss = false;
     private boolean notification;
     private boolean darkmode;
 

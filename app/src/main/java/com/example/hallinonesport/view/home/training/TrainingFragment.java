@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hallinonesport.R;
+import com.example.hallinonesport.controller.SettingController;
 import com.example.hallinonesport.controller.TrainingController;
 import com.example.hallinonesport.model.Training;
 import com.google.android.flexbox.FlexDirection;
@@ -25,13 +26,14 @@ public class TrainingFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private TrainingController controller;
-
+    private SettingController settingController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.training_title);
-        this.controller = TrainingController.getInstance(getContext());
+        this.settingController = SettingController.getInstance(getContext());
+        this.controller = TrainingController.getInstance(getContext(), settingController.getSetting());
     }
 
     @Override
@@ -48,7 +50,7 @@ public class TrainingFragment extends Fragment {
     }
 
     private List<Training> getListTraining() {
-        trainings = controller.getListTrain();
+        trainings = controller.getListTrain(this.settingController.getSetting());
         return trainings;
     }
 }

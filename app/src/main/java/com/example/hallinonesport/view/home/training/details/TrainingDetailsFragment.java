@@ -20,6 +20,7 @@ import com.asura.library.posters.Poster;
 import com.asura.library.posters.RemoteVideo;
 import com.asura.library.views.PosterSlider;
 import com.example.hallinonesport.R;
+import com.example.hallinonesport.controller.SettingController;
 import com.example.hallinonesport.controller.TrainingController;
 import com.example.hallinonesport.model.Equipment;
 import com.example.hallinonesport.model.Training;
@@ -36,9 +37,11 @@ public class TrainingDetailsFragment extends Fragment {
     private TextView description;
     private Training training;
     private TrainingController controller;
+    private SettingController  settingController;
 
     public TrainingDetailsFragment(Training training) {
-        this.controller = TrainingController.getInstance(getContext());
+        this.settingController = SettingController.getInstance(getContext());
+        this.controller = TrainingController.getInstance(getContext(), this.settingController.getSetting());
         this.training = training;
     }
 

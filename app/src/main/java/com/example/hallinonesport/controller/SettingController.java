@@ -73,4 +73,7 @@ public class SettingController {
         }
     }
 
+    public Setting getSetting() {
+        return setting;
+    }
 }

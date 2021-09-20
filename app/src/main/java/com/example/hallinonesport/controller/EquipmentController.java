@@ -1,6 +1,9 @@
 package com.example.hallinonesport.controller;
 
 import android.content.Context;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.hallinonesport.model.Equipment;
 import com.example.hallinonesport.model.LocaleDbAccess;
@@ -29,5 +32,9 @@ public final class EquipmentController {
 
     public void setSelected (int id, boolean isSelected) {
         this.db.updateEquipmentSelected(id, isSelected);
+    }
+
+    public List<Integer> getSelectedIds () {
+        return db.getSelectedIds();
     }
 }
