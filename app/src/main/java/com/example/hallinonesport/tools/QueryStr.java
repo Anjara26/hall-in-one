@@ -4,7 +4,7 @@ public class QueryStr {
     public static final String CREATETABLEEQUIPEMENT = "CREATE TABLE equipment (" +
             "   equipment_id INTEGER PRIMARY KEY," +
             "   name TEXT," +
-            "   image INTEGER," +
+            "   image TEXT," +
             "   is_selected NUMERIC" +
             ");";
 
@@ -16,9 +16,9 @@ public class QueryStr {
             "    title TEXT," +
             "    description TEXT," +
             "    duration INTEGER," +
-            "    image_icon INTEGER," +
-            "    image INTEGER," +
-            "    video INTEGER" +
+            "    image_icon TEXT," +
+            "    image TEXT," +
+            "    video TEXT" +
             ");";
 
     public static  final String CREATETABLEACCOMPLISHMENT = "CREATE TABLE accomplishment (" +

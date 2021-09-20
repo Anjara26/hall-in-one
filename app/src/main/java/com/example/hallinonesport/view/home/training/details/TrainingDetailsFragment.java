@@ -35,7 +35,7 @@ public class TrainingDetailsFragment extends Fragment {
         posterSlider = (PosterSlider) view.findViewById(R.id.poster_slider);
         List<Poster> posters=new ArrayList<>();
         posters.add(new DrawableImage(R.drawable.fitness));
-        posters.add(new RemoteVideo(Uri.parse("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")));
+        posters.add(new RemoteVideo(Uri.parse("https://firebasestorage.googleapis.com/v0/b/hall-in-one.appspot.com/o/Bicycle%20crunch.mp4?alt=media")));
         Log.d("poster", String.valueOf(posters.size()));
         posterSlider.setPosters(posters);
         // Inflate the layout for this fragment
