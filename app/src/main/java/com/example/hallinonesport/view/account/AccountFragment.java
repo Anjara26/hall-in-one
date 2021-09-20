@@ -1,5 +1,7 @@
 package com.example.hallinonesport.view.account;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -21,6 +24,18 @@ import android.widget.Switch;
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.controller.SettingController;
 import com.example.hallinonesport.model.Setting;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class AccountFragment extends Fragment {
 
@@ -37,11 +52,15 @@ public class AccountFragment extends Fragment {
     private Switch notification;
     private Switch darkmode;
 
+    private CircleImageView profil;
+
     private CardView accountCard;
     private LinearLayout accountModal;
     private ImageButton closeAccount;
+    private LoginButton loginButton;
 
     private SettingController settingController;
+    CallbackManager callbackManager;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -51,12 +70,42 @@ public class AccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        callbackManager = CallbackManager.Factory.create();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(getActivity());
+
+        profil = (CircleImageView) view.findViewById(R.id.profil_image) ;
+        loginButton = (LoginButton) view.findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");
+        // If using in a fragment
+        loginButton.setFragment(this);
+
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                accountModal.setVisibility(View.INVISIBLE);
+                background.setVisibility(View.INVISIBLE);
+                String profilUrl = "https://graph.facebook.com" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+                profil.setImageURI(Uri.parse(profilUrl));
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
 
         this.preferenceCard = view.findViewById(R.id.preferenceCard);
         this.preference = view.findViewById(R.id.preferenceModal);
@@ -178,6 +227,12 @@ public class AccountFragment extends Fragment {
             this.darkmode.setChecked(settingController.isDarkmode());
             ((Button)view.findViewById(R.id.savePreference)).performClick();
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

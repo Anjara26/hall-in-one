@@ -44,30 +44,13 @@
             android:gravity="center_horizontal"
             android:text="Connectez-vous pour enregistrer vos exercices" />
 
-        <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="30dp"
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:background="#3B5998">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:src="@drawable/ic_facebook" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="Continuer avec Facebook"
-                android:textColor="@color/white" />
-        </LinearLayout>
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
 
     </LinearLayout>
 
@@ -239,7 +222,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/profil_image"
                 android:gravity="center_horizontal"
-                android:text="Justin Bieber"
+                android:text=""
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -266,15 +249,6 @@
                     android:layout_height="157dp"
                     android:layout_gravity="center_horizontal"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Vous avez :" />
 
                     <TextView
                         android:id="@+id/textView2"
