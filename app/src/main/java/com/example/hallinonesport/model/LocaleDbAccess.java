@@ -47,4 +47,28 @@ public class LocaleDbAccess {
 
         return  equipments;
     }
+
+    public List<Training> getTrainings () {
+        this.database = this.dbAccess.getWritableDatabase();
+        List<Training> trainings = new ArrayList<>();
+        String sql = "SELECT * FROM train;";
+        Cursor cursor = database.rawQuery(sql, null);
+        
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Training training = new Training()
+                        .setId(cursor.getInt(0))
+                        .setName(cursor.getString(4))
+                        .setDescription(cursor.getString(5))
+                        .setDuration(cursor.getFloat(6))
+                        .setImageIcon(cursor.getString(7))
+                        .setImage(cursor.getString(8))
+                        .setVideo(cursor.getString(9));
+                cursor.moveToNext();
+                trainings.add(training);
+            }
+        }
+
+        return trainings;
+    }
 }

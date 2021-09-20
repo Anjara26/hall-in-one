@@ -27,8 +27,11 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(QueryStr.CREATETABLEEQUIPEMENT + QueryStr.CREATETABLETRAIN + QueryStr.CREATETABLEACCOMPLISHMENT);
+        sqLiteDatabase.execSQL(QueryStr.CREATETABLEEQUIPEMENT);
+        sqLiteDatabase.execSQL(QueryStr.CREATETABLETRAIN);
+        sqLiteDatabase.execSQL(QueryStr.CREATETABLEACCOMPLISHMENT);
         sqLiteDatabase.execSQL(QueryStr.INSERTEQUIPMENTS);
+        sqLiteDatabase.execSQL(QueryStr.INSERTTRAINING);
     }
 
     /**

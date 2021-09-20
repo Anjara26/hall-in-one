@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.model.Equipment;
+import com.example.hallinonesport.tools.Useful;
 
 import java.util.List;
 
@@ -38,9 +39,12 @@ public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> 
         final Equipment equipment = equipments.get(position);
         holder.getName().setText(equipment.getname());
         Resources resources = holder.itemView.getResources();
-        int imageResource = resources.getIdentifier(equipment.getImage(), null, activity.getPackageName());
-        Drawable res = resources.getDrawable(imageResource, activity.getTheme());
-        holder.getImage().setImageDrawable(res);
+        holder.getImage().setImageDrawable(Useful.getDrawable(
+                resources,
+                equipment.getImage(),
+                activity.getPackageName(),
+                activity.getTheme()
+        ));
         holder.getCardView().setOnClickListener(new View.OnClickListener(){
 
             @Override
