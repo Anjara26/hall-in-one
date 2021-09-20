@@ -26,4 +26,8 @@ public final class EquipmentController {
     public List<Equipment> getListEquipment() {
         return db.getEquipments();
     }
+
+    public void setSelected (int id, boolean isSelected) {
+        this.db.updateEquipmentSelected(id, isSelected);
+    }
 }

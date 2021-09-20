@@ -1,5 +1,6 @@
 package com.example.hallinonesport.view.home.equipment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -9,13 +10,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.controller.EquipmentController;
@@ -27,13 +31,14 @@ import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentFragment extends Fragment {
 
     private List<Equipment> equipments;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private EquipmentAdapter adapter;
     private Button button;
     private EquipmentController controller;
 
@@ -50,7 +55,8 @@ public class EquipmentFragment extends Fragment {
         setHasOptionsMenu(true);
 
         this.recyclerView = view.findViewById(R.id.recycler_view);
-        this.adapter = new EquipmentAdapter(this.controller.getListEquipment(), getActivity());
+        this.equipments = this.controller.getListEquipment();
+        this.adapter = new EquipmentAdapter(this.controller.getListEquipment(), getActivity(), controller);
         FlexboxLayoutManager manager = new FlexboxLayoutManager(view.getContext());
         manager.setFlexDirection(FlexDirection.ROW);
         manager.setFlexWrap(FlexWrap.WRAP);
@@ -86,7 +92,35 @@ public class EquipmentFragment extends Fragment {
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Recherche");
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+
         super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    private void filter(String text) {
+        ArrayList<Equipment> filteredlist = new ArrayList<>();
+
+        for (Equipment item : equipments) {
+            if (item.getname().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            this.adapter.filterList(filteredlist);
+        }
     }
 
 }

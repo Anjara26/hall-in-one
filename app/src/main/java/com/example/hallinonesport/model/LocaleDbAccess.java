@@ -92,4 +92,11 @@ public class LocaleDbAccess {
 
         return training;
     }
+
+    public void updateEquipmentSelected (int id, boolean isSelected) {
+        this.database = this.dbAccess.getWritableDatabase();
+        int selected = isSelected ? 1 : 0;
+        String sql = "UPDATE equipment SET is_selected = " + selected + " WHERE equipment_id = " + id;
+        this.database.execSQL(sql);
+    }
 }

@@ -12,19 +12,28 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hallinonesport.R;
+import com.example.hallinonesport.controller.EquipmentController;
 import com.example.hallinonesport.model.Equipment;
 import com.example.hallinonesport.tools.Useful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> {
 
     private List<Equipment> equipments;
     private FragmentActivity activity;
+    private EquipmentController controller;
 
-    public EquipmentAdapter(List<Equipment> equipments, FragmentActivity activity) {
+    public EquipmentAdapter(List<Equipment> equipments, FragmentActivity activity, EquipmentController controller) {
         this.equipments = equipments;
         this.activity = activity;
+        this.controller = controller;
+    }
+
+    public void filterList(ArrayList<Equipment> filterllist) {
+        equipments = filterllist;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -45,11 +54,14 @@ public class EquipmentAdapter extends RecyclerView.Adapter<CardEquipmentHolder> 
                 activity.getPackageName(),
                 activity.getTheme()
         ));
-        holder.getCardView().setOnClickListener(new View.OnClickListener(){
+        holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
+        holder.getCheckImage().setVisibility(equipment.isSelected() ? View.VISIBLE : View.INVISIBLE);
 
+        holder.getCardView().setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 equipment.setSelected(!equipment.isSelected());
+                controller.setSelected(equipment.getId(), equipment.isSelected());
                 holder.getCardView().setBackgroundColor(equipment.isSelected() ? Color.rgb(224,224,224) : Color.WHITE);
                 holder.getCheckImage().setVisibility(equipment.isSelected() ? View.VISIBLE : View.INVISIBLE);
             }
