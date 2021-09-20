@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.hallinonesport.R;
+import com.example.hallinonesport.controller.EquipmentController;
 import com.example.hallinonesport.model.Equipment;
 import com.example.hallinonesport.model.LocaleDbAccess;
 import com.example.hallinonesport.view.home.training.TrainingFragment;
@@ -28,58 +29,18 @@ import com.google.android.flexbox.JustifyContent;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EquipmentFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EquipmentFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private List<Equipment> equipments;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private Button button;
-    private LocaleDbAccess db;
-
-    public EquipmentFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EquipmentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EquipmentFragment newInstance(String param1, String param2) {
-        EquipmentFragment fragment = new EquipmentFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private EquipmentController controller;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.db = new LocaleDbAccess(getContext());
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        this.controller = EquipmentController.getInstance(getContext());
     }
 
     @Override
@@ -89,7 +50,7 @@ public class EquipmentFragment extends Fragment {
         setHasOptionsMenu(true);
 
         this.recyclerView = view.findViewById(R.id.recycler_view);
-        this.adapter = new EquipmentAdapter(getListEquipment(), getActivity());
+        this.adapter = new EquipmentAdapter(this.controller.getListEquipment(), getActivity());
         FlexboxLayoutManager manager = new FlexboxLayoutManager(view.getContext());
         manager.setFlexDirection(FlexDirection.ROW);
         manager.setFlexWrap(FlexWrap.WRAP);
@@ -126,10 +87,6 @@ public class EquipmentFragment extends Fragment {
         searchView.setQueryHint("Recherche");
 
         super.onCreateOptionsMenu(menu,inflater);
-    }
-
-    private List<Equipment> getListEquipment() {
-        return db.getEquipments();
     }
 
 }
