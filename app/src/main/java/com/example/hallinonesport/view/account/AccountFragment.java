@@ -1,11 +1,8 @@
 package com.example.hallinonesport.view.account;
 
-<<<<<<< HEAD
 import android.graphics.Color;
-=======
 import android.content.Intent;
 import android.net.Uri;
->>>>>>> splashscreen
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -25,8 +22,6 @@ import android.widget.Switch;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.controller.SettingController;
-<<<<<<< HEAD
-=======
 import com.example.hallinonesport.model.Setting;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -40,7 +35,6 @@ import com.facebook.login.widget.LoginButton;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
->>>>>>> splashscreen
 
 public class AccountFragment extends Fragment {
 
