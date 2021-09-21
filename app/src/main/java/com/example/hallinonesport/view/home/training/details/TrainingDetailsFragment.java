@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -55,6 +57,8 @@ public class TrainingDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training_details, container, false);
+        ActionBar actionBar =  ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setTitle(training.getName());
         this.startButton = (Button) view.findViewById(R.id.startButton);
         this.title = (TextView) view.findViewById(R.id.training_details_title);
         this.description = (TextView) view.findViewById(R.id.training_details_description);
@@ -64,11 +68,11 @@ public class TrainingDetailsFragment extends Fragment {
         this.posterSlider = (PosterSlider) view.findViewById(R.id.poster_slider);
         Resources resources = getResources();
         List<Poster> posters=new ArrayList<>();
-        int imageResource = resources.getIdentifier(training.getImage(), null, getActivity().getPackageName());
-        posters.add(new DrawableImage(imageResource));
         if(this.training.getVideo() != null && this.training.getVideo() != "") {
             posters.add(new RemoteVideo(Uri.parse(this.training.getVideo())));
         }
+        int imageResource = resources.getIdentifier(training.getImage(), null, getActivity().getPackageName());
+        posters.add(new DrawableImage(imageResource));
         posterSlider.setPosters(posters);
 
         return view;

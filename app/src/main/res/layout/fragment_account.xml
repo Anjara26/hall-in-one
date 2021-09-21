@@ -247,18 +247,10 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="157dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/rewards_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Vos accomplissements : " />
 
                     <TextView
                         android:id="@+id/goal_text"

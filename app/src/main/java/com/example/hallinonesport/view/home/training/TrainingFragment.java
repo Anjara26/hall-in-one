@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +34,6 @@ public class TrainingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.training_title);
         this.settingController = SettingController.getInstance(getContext());
         this.controller = TrainingController.getInstance(getContext(), settingController.getSetting());
     }
@@ -43,6 +43,7 @@ public class TrainingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.training_title);
         this.recyclerView = view.findViewById(R.id.training_recyclerView);
         this.adapter = new TrainingAdapter(getListTraining(), getActivity());
         FlexboxLayoutManager manager = new FlexboxLayoutManager(view.getContext());

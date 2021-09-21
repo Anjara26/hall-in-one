@@ -26,6 +26,7 @@
                 android:layout_below="@id/equipment_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
                 android:text="Corde à sauter" />
 
             <ImageView

@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#DF1B3F"
         android:orientation="vertical">
 
         <ImageView
@@ -22,9 +23,9 @@
             android:id="@+id/splashTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal|center_vertical"
+            android:gravity="center|top|center_vertical"
             android:text="Hall-in-one"
-            android:textSize="36sp" />
+            android:textSize="40sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
