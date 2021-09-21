@@ -83,7 +83,7 @@ public class EquipmentFragment extends Fragment {
 
                     transaction.commit();
                 } else {
-                    Toast.makeText(getActivity(), "Selectionez au moin un équipement", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Selectionez au moins un équipement", Toast.LENGTH_SHORT).show();
                 }
             }
         });
