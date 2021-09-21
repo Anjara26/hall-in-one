@@ -1,7 +1,9 @@
 package com.example.hallinonesport.view.home.training;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +38,7 @@ public class TrainingFragment extends Fragment {
         this.controller = TrainingController.getInstance(getContext(), settingController.getSetting());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class TrainingFragment extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Training> getListTraining() {
         trainings = controller.getListTrain(this.settingController.getSetting());
         return trainings;
