@@ -8,6 +8,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.hallinonesport.controller.SettingController;
 import com.example.hallinonesport.tools.MySQLiteOpenHelper;
 
 import java.util.ArrayList;
@@ -55,20 +56,20 @@ public class LocaleDbAccess {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Training> getTrainings (List<Integer> idList, Setting setting) {
+    public List<Training> getTrainings (List<Integer> idList, SettingController settingController) {
         this.database = this.dbAccess.getReadableDatabase();
         List<Training> trainings = new ArrayList<>();
         String idsStr = idList.stream().map(Object::toString).collect(Collectors.joining(","));
 
         String typeCondition = "";
 
-        if(setting.isWeightloss() && !setting.isWeightgain()) {
+        if(settingController.isWeightloss() && !settingController.isWeightgain()) {
             typeCondition = "AND goal = 'perte'";
-        } else if(!setting.isWeightloss() && setting.isWeightgain()) {
+        } else if(!settingController.isWeightloss() && settingController.isWeightgain()) {
             typeCondition = "AND goal = 'masse'";
         }
 
-        String sql = "SELECT * FROM train WHERE gender = " + setting.getGender() + " AND equipment_id IN (" + idsStr + ") " + typeCondition + ";";
+        String sql = "SELECT * FROM train WHERE gender = " + settingController.getGender() + " AND equipment_id IN (" + idsStr + ") " + typeCondition + ";";
         Log.d("query", sql);
         Cursor cursor = database.rawQuery(sql, null);
         

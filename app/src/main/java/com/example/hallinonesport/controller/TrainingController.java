@@ -28,7 +28,7 @@ public final class TrainingController {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Training> getListTrain(Setting setting) {
+    public List<Training> getListTrain(SettingController setting) {
         return db.getTrainings(this.db.getSelectedIds(), setting);
     }
 

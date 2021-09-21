@@ -19,7 +19,6 @@ public class SettingController {
         if(SettingController.instance == null){
             SettingController.instance = new SettingController();
             recupSerialize(context);
-
         }
         return SettingController.instance;
     }
@@ -35,7 +34,7 @@ public class SettingController {
 
     public Integer getGender() {
         if(setting == null){
-            return null;
+            return 1;
         }else{
             return setting.getGender();
         }

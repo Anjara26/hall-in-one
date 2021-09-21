@@ -54,7 +54,7 @@ public class TrainingFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private List<Training> getListTraining() {
-        trainings = controller.getListTrain(this.settingController.getSetting());
+        trainings = controller.getListTrain(this.settingController);
         return trainings;
     }
 }

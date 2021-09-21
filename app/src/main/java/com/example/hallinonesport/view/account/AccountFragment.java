@@ -9,28 +9,37 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.controller.SettingController;
-import com.example.hallinonesport.model.Setting;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URI;
+import java.util.Arrays;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -50,12 +59,15 @@ public class AccountFragment extends Fragment {
     private CheckBox weightLoss;
     private Switch notification;
     private Switch darkmode;
+    private TextView goal;
 
     private CircleImageView profil;
+    private TextView profilName;
 
     private CardView accountCard;
     private LinearLayout accountModal;
     private ImageButton closeAccount;
+
     private LoginButton loginButton;
 
     private SettingController settingController;
@@ -80,8 +92,9 @@ public class AccountFragment extends Fragment {
         AppEventsLogger.activateApp(getActivity());
 
         profil = (CircleImageView) view.findViewById(R.id.profil_image) ;
+        profilName = (TextView) view.findViewById(R.id.profil_name);
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
+        loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
         // If using in a fragment
         loginButton.setFragment(this);
 
@@ -89,10 +102,6 @@ public class AccountFragment extends Fragment {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                accountModal.setVisibility(View.INVISIBLE);
-                background.setVisibility(View.INVISIBLE);
-                String profilUrl = "https://graph.facebook.com" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
-                profil.setImageURI(Uri.parse(profilUrl));
             }
 
             @Override
@@ -102,7 +111,7 @@ public class AccountFragment extends Fragment {
 
             @Override
             public void onError(FacebookException exception) {
-                // App code
+                Log.d("Erro:facebook", exception.getMessage());
             }
         });
 
@@ -125,6 +134,7 @@ public class AccountFragment extends Fragment {
         this.accountCard = view.findViewById(R.id.accountCard);
         this.accountModal = view.findViewById(R.id.accountModal);
         this.closeAccount = view.findViewById(R.id.closeAccount);
+        this.goal = view.findViewById(R.id.goal_text);
 
         this.onClickAccount();
 
@@ -135,6 +145,14 @@ public class AccountFragment extends Fragment {
         if(this.settingController.isDarkmode()) {
             this.preference.setBackgroundColor(Color.GRAY);
             this.accountModal.setBackgroundColor(Color.GRAY);
+        }
+
+        if(this.settingController.isWeightgain() && this.settingController.isWeightloss()) {
+            this.goal.setText("Vos objectifs : Prise de masse, Perte de poids");
+        } else if(this.settingController.isWeightgain()) {
+            this.goal.setText("Vos objectifs : Prise de masse");
+        } else if (this.settingController.isWeightloss()) {
+            this.goal.setText("Vos objectifs : Perte de poids");
         }
 
         return view;
@@ -182,6 +200,14 @@ public class AccountFragment extends Fragment {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+
+                if(settingController.isWeightgain() && settingController.isWeightloss()) {
+                    goal.setText("Vos objectifs : Prise de masse, Perte de poids");
+                } else if(settingController.isWeightgain()) {
+                    goal.setText("Vos objectifs : Prise de masse");
+                } else if (settingController.isWeightloss()) {
+                    goal.setText("Vos objectifs : Perte de poids");
                 }
 
                 setSetting(gender, weightgain, weightloss, notificationValue, darkmodeValue);
@@ -242,4 +268,38 @@ public class AccountFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+        @Override
+        protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+            accountModal.setVisibility(View.INVISIBLE);
+            background.setVisibility(View.INVISIBLE);
+            if(currentAccessToken != null) {
+                loadUserProfile(currentAccessToken);
+            }
+        }
+    };
+
+    private void loadUserProfile(AccessToken accessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject object, GraphResponse response) {
+                try {
+                    String firstName = object.getString("first_name");
+                    String lastName = object.getString("last_name");
+                    String id = object.getString("id");
+                    String imageUrl = "https://graph.facebook.com" + id + "/picture?type=normal";
+
+                    profilName.setText(firstName + " " + lastName);
+                    profil.setImageURI(Uri.parse(imageUrl));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "first_name, last_name, id");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
 }
