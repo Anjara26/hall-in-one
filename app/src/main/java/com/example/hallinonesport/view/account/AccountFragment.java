@@ -16,11 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.hallinonesport.R;
 import com.example.hallinonesport.controller.SettingController;
 import com.facebook.AccessToken;
@@ -60,6 +63,8 @@ public class AccountFragment extends Fragment {
     private Switch notification;
     private Switch darkmode;
     private TextView goal;
+    private ImageView imageLogin;
+    private TextView textLogin;
 
     private CircleImageView profil;
     private TextView profilName;
@@ -93,10 +98,16 @@ public class AccountFragment extends Fragment {
 
         profil = (CircleImageView) view.findViewById(R.id.profil_image) ;
         profilName = (TextView) view.findViewById(R.id.profil_name);
+        imageLogin = (ImageView) view.findViewById(R.id.imageLogin);
+        textLogin = (TextView) view.findViewById(R.id.textLogin);
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
         // If using in a fragment
         loginButton.setFragment(this);
+
+        if(AccessToken.getCurrentAccessToken() != null) {
+            loadUserProfile(AccessToken.getCurrentAccessToken());
+        }
 
         // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -287,10 +298,14 @@ public class AccountFragment extends Fragment {
                     String firstName = object.getString("first_name");
                     String lastName = object.getString("last_name");
                     String id = object.getString("id");
-                    String imageUrl = "https://graph.facebook.com" + id + "/picture?type=normal";
-
+                    String imageUrl = "https://graph.facebook.com/" + id + "/picture?type=normal";
+                    Log.d("imageFacebook", imageUrl);
                     profilName.setText(firstName + " " + lastName);
-                    profil.setImageURI(Uri.parse(imageUrl));
+                    textLogin.setText("Déconnecter");
+                    imageLogin.setImageResource(R.drawable.logout);
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.dontAnimate();
+                    Glide.with(getActivity()).load(imageUrl).into(profil);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
