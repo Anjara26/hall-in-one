@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hall In One Sport</string>
+    <string name="app_name">Hall In One</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_title">Choisissez vos équipement</string>
     <string name="training_title">Vos entraînements</string>
