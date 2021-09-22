@@ -11,4 +11,5 @@
     <color name="grey">#D6D6D6</color>
     <color name="blue">#19204E</color>
     <color name="yellow">#FCB300</color>
+    <color name="buttonStart">#22b55d</color>
 </resources>
